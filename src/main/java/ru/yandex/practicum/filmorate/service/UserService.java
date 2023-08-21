@@ -24,6 +24,9 @@ public class UserService {
     public User saveUser(User user) {
         int id = setUserId();
         user.setId(id);
+        if (user.getName() == null) {
+            user.setName(user.getLogin());
+        }
         users.put(id, user);
         log.info("Добавлен пользователь с Id: " + user.getId() + " и именем: " + user.getName());
         return user;

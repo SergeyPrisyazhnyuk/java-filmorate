@@ -1,6 +1,7 @@
 package ru.yandex.practicum.filmorate.service;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.yandex.practicum.filmorate.exception.FilmNotFoundException;
 import ru.yandex.practicum.filmorate.model.Film;
 
 import java.util.HashMap;
@@ -30,9 +31,11 @@ public class FilmService {
     public Film updateFilm(Film film) {
         if (films.get(film.getId()) != null) {
             films.put(film.getId(), film);
+            log.info("Обновлен фильм с Id: " + film.getId() + " и названием: " + film.getName());
+            return film;
+        } else {
+            throw new FilmNotFoundException("Не найден фильм с id: " + film.getId());
         }
-        log.info("Обновлен фильм с Id: " + film.getId() + " и названием: " + film.getName());
-        return film;
     }
 
     public List<Film> getFilms() {

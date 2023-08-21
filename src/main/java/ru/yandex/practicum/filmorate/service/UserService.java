@@ -2,6 +2,7 @@ package ru.yandex.practicum.filmorate.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.yandex.practicum.filmorate.exception.UserNotFoundException;
 import ru.yandex.practicum.filmorate.model.User;
 
 import java.util.HashMap;
@@ -31,9 +32,11 @@ public class UserService {
     public User updateUser(User user) {
         if (users.get(user.getId()) != null) {
             users.put(user.getId(), user);
+            log.info("Обновлен фильм с Id: " + user.getId() + " и названием: " + user.getName());
+            return user;
+        } else {
+            throw new UserNotFoundException("Не найден юзер с id: " + user.getId());
         }
-        log.info("Обновлен фильм с Id: " + user.getId() + " и названием: " + user.getName());
-        return user;
     }
 
     public List<User> getUsers() {

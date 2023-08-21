@@ -15,11 +15,11 @@ public class UserControllerTest {
     @Test
     void test_Save() {
         // given
-        User user = new User().
-                setEmail("a@r.ru").
-                setName("Sergo").
-                setLogin("JavaCoder").
-                setBirthday(LocalDate.parse("1981-06-01"));
+        User user = new User()
+                .setEmail("a@r.ru")
+                .setName("Sergo")
+                .setLogin("JavaCoder")
+                .setBirthday(LocalDate.parse("1981-06-01"));
 
 
         // when

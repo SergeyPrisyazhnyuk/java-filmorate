@@ -14,7 +14,10 @@ public class FilmControllerTest {
     @Test
     void test_Save() {
         // given
-        Film film = new Film().setName("FilmName").setDescription("My Film Description").setDuration(1000L).setReleaseDate(LocalDate.parse("2020-10-10"));
+        Film film = new Film().setName("FilmName")
+                .setDescription("My Film Description")
+                .setDuration(1000L)
+                .setReleaseDate(LocalDate.parse("2020-10-10"));
 
 
         // when
@@ -25,7 +28,6 @@ public class FilmControllerTest {
                 () -> assertNotNull(result.getId())
         );
     }
-
 
 
 }

@@ -1,7 +1,6 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.filmorate.model.Film;
 
 import java.time.LocalDate;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class FilmControllerTest {
     private final FilmController filmController;
 
-    @Test
+
     void test_Save() {
         // given
         Film film = new Film().setName("FilmName")

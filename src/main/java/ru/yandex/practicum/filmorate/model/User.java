@@ -16,20 +16,20 @@ import java.time.LocalDate;
 @Accessors(chain = true)
 public class User {
 
-    Integer id;
+    private Integer id;
 
     @NotBlank(message = "Электронная почта не может быть пустой!")
     @Email(message = "Некорректная эл. почта!")
-    String email;
+    private String email;
 
     @NotBlank(message = "Логин не может быть пустым!")
     @Pattern(regexp = "^\\S*$", message = "Логин не может содержать пробелы!")
-    String login;
+    private String login;
 
-    String name;
+    private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "Дата рождения не может быть в будущем!")
-    LocalDate birthday;
+    private LocalDate birthday;
 
 }

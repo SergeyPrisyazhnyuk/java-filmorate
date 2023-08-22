@@ -16,18 +16,18 @@ import java.time.LocalDate;
 @Accessors(chain = true)
 public class Film {
 
-    Integer id;
+    private Integer id;
 
     @NotBlank(message = "Название не может быть пустым!")
-    String name;
+    private String name;
 
     @Size(max = 200, message = "Максимальная длина описания — 200 символов!")
-    String description;
+    private String description;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @MinimumDate
-    LocalDate releaseDate;
+    private LocalDate releaseDate;
 
     @Min(value = 0, message = "Продолжительность фильма должна быть положительной!")
-    Long duration;
+    private Long duration;
 }

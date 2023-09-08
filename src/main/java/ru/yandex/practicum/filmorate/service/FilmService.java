@@ -26,12 +26,12 @@ public class FilmService {
         return inMemoryFilmStorage.getAll();
     }
 
-    public Film getById(int Id) {
-        return inMemoryFilmStorage.get(Id);
+    public Film getById(int id) {
+        return inMemoryFilmStorage.get(id);
     }
 
-    public void deleteById(int Id) {
-        inMemoryFilmStorage.deleteById(Id);
+    public void deleteById(int id) {
+        inMemoryFilmStorage.deleteById(id);
     }
 
     public void putLike(int fId, int uId) {

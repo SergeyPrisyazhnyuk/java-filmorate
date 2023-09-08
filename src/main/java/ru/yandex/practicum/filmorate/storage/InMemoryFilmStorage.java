@@ -45,11 +45,11 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     @Override
-    public void deleteById(int Id) {
-        if (films.get(Id) != null) {
-            films.remove(Id);
+    public void deleteById(int id) {
+        if (films.get(id) != null) {
+            films.remove(id);
         } else {
-            throw new FilmNotFoundException("Не найден фильм с id: " + Id);
+            throw new FilmNotFoundException("Не найден фильм с id: " + id);
         }
     }
 
@@ -59,11 +59,11 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     @Override
-    public Film get(int Id) {
-        if (films.get(Id) != null) {
-            return films.get(Id);
+    public Film get(int id) {
+        if (films.get(id) != null) {
+            return films.get(id);
         } else {
-            throw new FilmNotFoundException("Не найден фильм с id: " + Id);
+            throw new FilmNotFoundException("Не найден фильм с id: " + id);
         }
     }
 

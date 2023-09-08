@@ -10,11 +10,11 @@ public interface FilmStorage {
 
     Film update(Film film);
 
-    void deleteById(int Id);
+    void deleteById(int id);
 
     List<Film> getAll();
 
-    Film get(int Id);
+    Film get(int id);
 
     void putLike(int fId, int uId);
 

@@ -36,4 +36,35 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("/{id}")
+    public User get(@PathVariable("id") int Id) {
+        log.info("Invoke get method to return film by Id");
+        return userService.getById(Id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") int Id) {
+        userService.deleteById(Id);
+    }
+
+    @PutMapping("/users/{id}/friends/{friendId}")
+    public void addFriend(int id, int friendId) {
+        userService.addFriend(id, friendId);
+    }
+
+    @DeleteMapping("/users/{id}/friends/{friendId}")
+    public void deleteFriend(int id, int friendId) {
+        userService.deleteFriend(id, friendId);
+    }
+
+    @GetMapping("/users/{id}/friends")
+    public List<User> getFriends(int id) {
+        return userService.getFriends(id);
+    }
+
+    @GetMapping("/users/{id}/friends/common/{otherId}")
+    public List<User> getCommonFriends(int id, int otherId) {
+        return userService.getCommonFriends(id, otherId);
+    }
+
 }

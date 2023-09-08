@@ -33,8 +33,35 @@ public class FilmController {
 
     @GetMapping
     public List<Film> getFilms() {
-        log.info("Invoke get method");
+        log.info("Invoke get method to return all films");
         return filmService.getFilms();
+    }
+
+    @GetMapping("/{id}")
+    public Film get(@PathVariable("id") int id) {
+        log.info("Invoke get method to return film by Id");
+        return filmService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") int id) {
+        filmService.deleteById(id);
+    }
+
+
+    @PutMapping("/films/{id}/like/{userId}")
+    public void addLike(@PathVariable("id") int id, @PathVariable("userId") int userId) {
+        filmService.putLike(id, userId);
+    }
+
+    @DeleteMapping("/films/{id}/like/{userId}")
+    public void deleteLike(@PathVariable("id") int id, @PathVariable("userId") int userId) {
+        filmService.deleteLike(id, userId);
+    }
+
+    @GetMapping("/films/popular?count={count}")
+    public List<Film> getPopular(@PathVariable("count") int count) {
+        return filmService.getFilmsByCount(count);
     }
 
 }

@@ -37,14 +37,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User get(@PathVariable("id") int Id) {
+    public User get(@PathVariable("id") int id) {
         log.info("Invoke get method to return film by Id");
-        return userService.getById(Id);
+        return userService.getById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") int Id) {
-        userService.deleteById(Id);
+    public void delete(@PathVariable("id") int id) {
+        userService.deleteById(id);
     }
 
     @PutMapping("/users/{id}/friends/{friendId}")

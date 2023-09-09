@@ -3,6 +3,7 @@ package ru.yandex.practicum.filmorate.controller;
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.UserService;
+import ru.yandex.practicum.filmorate.storage.InMemoryUserStorage;
 
 import java.time.LocalDate;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UserControllerTest {
 
-    private final UserController userController = new UserController(new UserService());
+    private final InMemoryUserStorage userStorage = new InMemoryUserStorage();
 
     @Test
     void test_Save() {
@@ -23,8 +24,10 @@ public class UserControllerTest {
                 .setBirthday(LocalDate.parse("1981-06-01"));
 
 
+        System.out.println(user.toString());
+
         // when
-        User result = userController.save(user);
+        User result = userStorage.save(user);
 
         // then
         assertAll("Check id's field",

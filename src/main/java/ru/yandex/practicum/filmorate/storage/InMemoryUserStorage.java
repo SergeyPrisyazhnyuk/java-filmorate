@@ -27,7 +27,7 @@ public class InMemoryUserStorage implements UserStorage {
     public User save(User user) {
         int id = setUserId();
         user.setId(id);
-        if (user.getName() == null) {
+        if (user.getName() == null || user.getName().equals("")) {
             user.setName(user.getLogin());
         }
         users.put(id, user);

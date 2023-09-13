@@ -61,14 +61,6 @@ public class FilmController {
         log.info("Invoke deleteLike method with film id = " + id + "and user id = " + userId);
         filmService.deleteLike(id, userId);
     }
-/*
-
-    @GetMapping("/popular?count={count}")
-    public List<Film> getPopular(@PathVariable("count") int count) {
-        log.info("Invoke getPopular method with count = " + count);
-        return filmService.getFilmsByCount(count);
-    }
-*/
 
     @GetMapping("/popular")
     public List<Film> getPopularZeroCount(@RequestParam(defaultValue = "10") int count) {

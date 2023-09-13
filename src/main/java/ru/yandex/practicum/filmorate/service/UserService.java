@@ -14,7 +14,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    InMemoryUserStorage inMemoryUserStorage;
+    private InMemoryUserStorage inMemoryUserStorage;
 
     public User saveUser(User user) {
         return inMemoryUserStorage.save(user);

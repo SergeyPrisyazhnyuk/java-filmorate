@@ -36,12 +36,12 @@ public class FilmService {
         inMemoryFilmStorage.deleteById(id);
     }
 
-    public void putLike(int fId, int uId) {
-        inMemoryFilmStorage.putLike(fId, uId);
+    public void putLike(int filmId, int userId) {
+        inMemoryFilmStorage.putLike(filmId, userId);
     }
 
-    public void deleteLike(int fId, int uId) {
-        inMemoryFilmStorage.deleteLike(fId, uId);
+    public void deleteLike(int filemId, int userId) {
+        inMemoryFilmStorage.deleteLike(filemId, userId);
     }
 
     public List<Film> getFilmsByCount(int count) {

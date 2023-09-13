@@ -45,22 +45,26 @@ public class FilmController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id) {
+        log.info("Invoke delete method with id = " + id);
         filmService.deleteById(id);
     }
 
 
-    @PutMapping("/films/{id}/like/{userId}")
+    @PutMapping("/{id}/like/{userId}")
     public void addLike(@PathVariable("id") int id, @PathVariable("userId") int userId) {
+        log.info("Invoke putLike method with film id = " + id + "and user id = " + userId);
         filmService.putLike(id, userId);
     }
 
-    @DeleteMapping("/films/{id}/like/{userId}")
+    @DeleteMapping("/{id}/like/{userId}")
     public void deleteLike(@PathVariable("id") int id, @PathVariable("userId") int userId) {
+        log.info("Invoke deleteLike method with film id = " + id + "and user id = " + userId);
         filmService.deleteLike(id, userId);
     }
 
-    @GetMapping("/films/popular?count={count}")
+    @GetMapping("/popular?count={count}")
     public List<Film> getPopular(@PathVariable("count") int count) {
+        log.info("Invoke getPopular method with count = " + count);
         return filmService.getFilmsByCount(count);
     }
 

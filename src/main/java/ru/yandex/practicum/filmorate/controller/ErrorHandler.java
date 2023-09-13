@@ -28,6 +28,7 @@ public class ErrorHandler {
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFoundUser(final UserNotFoundException e) {
+        log.error("UserNotFoundException" + e.getMessage());
         return new ErrorResponse(e.getMessage());
 
     }
@@ -35,6 +36,7 @@ public class ErrorHandler {
     @ExceptionHandler(FilmNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFoundFilm(final FilmNotFoundException e) {
+        log.error("FilmNotFoundException" + e.getMessage());
         return new ErrorResponse(e.getMessage());
 
     }

@@ -49,25 +49,25 @@ public class UserController {
 
     @PutMapping("/{id}/friends/{friendId}")
     public void addFriend(@PathVariable("id") int id, @PathVariable("friendId") int friendId) {
-        log.info("Invoke addFriend method with user id = " + id + " and friend id = " + friendId );
+        log.info("Invoke addFriend method with user id = " + id + " and friend id = " + friendId);
         userService.addFriend(id, friendId);
     }
 
     @DeleteMapping("/{id}/friends/{friendId}")
     public void deleteFriend(@PathVariable("id") int id, @PathVariable("friendId") int friendId) {
-        log.info("Invoke deleteFriend method with user id = " + id + " and friend id = " + friendId );
+        log.info("Invoke deleteFriend method with user id = " + id + " and friend id = " + friendId);
         userService.deleteFriend(id, friendId);
     }
 
     @GetMapping("/{id}/friends")
     public List<User> getFriends(@PathVariable("id") int id) {
-        log.info("Invoke getFriends method with user id = " + id );
+        log.info("Invoke getFriends method with user id = " + id);
         return userService.getFriends(id);
     }
 
     @GetMapping("/{id}/friends/common/{otherId}")
     public List<User> getCommonFriends(@PathVariable("id") int id, @PathVariable("friendId") int otherId) {
-        log.info("Invoke getCommonFriends method with user id = " + id + " and other id = " + otherId );
+        log.info("Invoke getCommonFriends method with user id = " + id + " and other id = " + otherId);
         return userService.getCommonFriends(id, otherId);
     }
 

@@ -68,4 +68,10 @@ public class FilmController {
         return filmService.getFilmsByCount(count);
     }
 
+    @GetMapping("/popular")
+    public List<Film> getPopularZeroCount() {
+        log.info("Invoke getPopular method with default count = 10");
+        return filmService.getFilmsByCount(10);
+    }
+
 }

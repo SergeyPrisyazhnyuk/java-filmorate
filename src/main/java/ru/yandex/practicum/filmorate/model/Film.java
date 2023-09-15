@@ -10,6 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import ru.yandex.practicum.filmorate.validate.MinimumDate;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @ToString
@@ -30,4 +32,18 @@ public class Film {
 
     @Min(value = 0, message = "Продолжительность фильма должна быть положительной!")
     private Long duration;
+
+    private final Set<Integer> likes = new HashSet<>();
+
+    public void addLike(int id) {
+        likes.add(id);
+    }
+
+    public void deleteLike(int id) {
+        likes.remove(id);
+    }
+
+    public int getLikesCount() {
+        return likes.size();
+    }
 }

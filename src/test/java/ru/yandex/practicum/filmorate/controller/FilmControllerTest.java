@@ -2,7 +2,7 @@ package ru.yandex.practicum.filmorate.controller;
 
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.filmorate.model.Film;
-import ru.yandex.practicum.filmorate.service.FilmService;
+import ru.yandex.practicum.filmorate.storage.InMemoryFilmStorage;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class FilmControllerTest {
-    private final FilmController filmController = new FilmController(new FilmService());
+
+
+    InMemoryFilmStorage filmStorage = new InMemoryFilmStorage();
 
     @Test
     void test_Save() {
@@ -22,7 +24,7 @@ public class FilmControllerTest {
 
 
         // when
-        Film result = filmController.save(film);
+        Film result = filmStorage.save(film);
 
         // then
         assertAll("Check id's field",

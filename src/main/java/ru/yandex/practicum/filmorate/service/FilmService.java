@@ -40,8 +40,8 @@ public class FilmService {
         inMemoryFilmStorage.putLike(filmId, userId);
     }
 
-    public void deleteLike(int filemId, int userId) {
-        inMemoryFilmStorage.deleteLike(filemId, userId);
+    public void deleteLike(int filmId, int userId) {
+        inMemoryFilmStorage.deleteLike(filmId, userId);
     }
 
     public List<Film> getFilmsByCount(int count) {

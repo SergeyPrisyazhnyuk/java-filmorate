@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -16,6 +17,7 @@ import java.util.Set;
 
 @Data
 @ToString
+@Builder
 @Accessors(chain = true)
 public class User {
 

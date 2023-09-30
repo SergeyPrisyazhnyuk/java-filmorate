@@ -39,12 +39,7 @@ public class FilmDBStorage implements FilmStorage {
 
         film.setId(setIdReturn());
 
-        Integer integer = film.getRating().getRatingId();
-
-        log.info(integer.toString());
-
-       Integer ratingId = film.getRating().getRatingId();
-
+        Integer ratingId = film.getMpa().getId();
 
         String sql = "INSERT INTO FILMS (FILM_NAME, DESCRIPTION, RELEASE_DATE, DURATION, RATING_ID) VALUES (?,?,?,?,?)";
 
@@ -59,12 +54,15 @@ public class FilmDBStorage implements FilmStorage {
         try {
             get(film.getId());
         } catch (EmptyResultDataAccessException e) {
-            throw new NotFoundException("Не был найден юзер с Id = " + film.getId());
+            throw new NotFoundException("Не был найден фильм с Id = " + film.getId());
         }
 
+        film.setId(setIdReturn());
 
-        String sql = "UPDATE FILMS SET FILM_NAME = ?, DESCRIPTION = ?, RELEASE_DATE = ?, DURATION = ?, RATING_ID = ?";
-        jdbcTemplate.update(sql, film.getName(), film.getDescription(), film.getReleaseDate(), film.getDuration(), film.getRating());
+        Integer ratingId = film.getMpa().getId();
+
+        String sql = "UPDATE FILMS SET FILM_NAME = ?, DESCRIPTION = ?, RELEASE_DATE = ?, DURATION = ?, RATING_ID = ? WHERE FILM_ID = ?";
+        jdbcTemplate.update(sql, film.getName(), film.getDescription(), film.getReleaseDate(), film.getDuration(), ratingId, film.getId());
         log.info("Обновлен фильм с Id: " + film.getId() + " и названием: " + film.getName());
         return film;
     }
@@ -97,8 +95,10 @@ public class FilmDBStorage implements FilmStorage {
     @Override
     public Film get(int id) {
 
-        String sql = "SELECT FILM_ID, FILM_NAME, DESCRIPTION, RELEASE_DATE, DURATION, RATING_ID FROM FILMS WHERE FILM_ID = ?";
-
+//        String sql = "SELECT FILM_ID, FILM_NAME, DESCRIPTION, RELEASE_DATE, DURATION, RATING_ID FROM FILMS WHERE FILM_ID = ?";
+        String sql = "SELECT f.FILM_ID, f.FILM_NAME, f.DESCRIPTION, f.RELEASE_DATE, f.DURATION, f.RATING_ID, r.RATING_NAME FROM FILMS f JOIN RATING r \n" +
+                "\tON f.RATING_ID  = r.RATING_ID " +
+                "WHERE f.FILM_ID = ?";
         try {
             return jdbcTemplate.queryForObject(sql, this::mapRowToFilm, id);
         } catch (EmptyResultDataAccessException e) {
@@ -146,8 +146,7 @@ public class FilmDBStorage implements FilmStorage {
                 .description(rs.getString("DESCRIPTION"))
                 .releaseDate(rs.getDate("RELEASE_DATE").toLocalDate())
                 .duration(rs.getLong("DURATION"))
-       //         .rating(new Rating(rs.getInt("RATING_ID") , rs.getString("RATING_NAME")))
-                .rating(rs.getInt("RATING_ID"))
+                .mpa(new Rating(rs.getInt("RATING_ID") , rs.getString("RATING_NAME")))
                 .build();
     }
 

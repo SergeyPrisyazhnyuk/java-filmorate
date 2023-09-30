@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class Rating {
 
-    private Integer ratingId;
+    private Integer id;
 
     @NotNull
     private String ratingName;

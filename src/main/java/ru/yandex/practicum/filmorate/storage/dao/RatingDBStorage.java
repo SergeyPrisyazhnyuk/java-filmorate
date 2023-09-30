@@ -1,6 +1,5 @@
 package ru.yandex.practicum.filmorate.storage.dao;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -53,7 +52,7 @@ public class RatingDBStorage implements RatingStorage {
         while ((ratingRows.next())) {
             Rating rating = Rating
                     .builder()
-                    .ratingId(ratingRows.getInt("RATING_ID"))
+                    .id(ratingRows.getInt("RATING_ID"))
                     .ratingName(ratingRows.getString("RATING_NAME"))
                     .build();
             ratings.add(rating);
@@ -66,7 +65,7 @@ public class RatingDBStorage implements RatingStorage {
     private Rating mapRowToRating(ResultSet rs, int rowNum) throws SQLException {
         return Rating
                 .builder()
-                .ratingId(rs.getInt("RATING_ID"))
+                .id(rs.getInt("RATING_ID"))
                 .ratingName(rs.getString("RATING_NAME"))
                 .build();
 

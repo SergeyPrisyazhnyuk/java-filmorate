@@ -36,14 +36,9 @@ public class Film {
     private Long duration;
 
     private Rating mpa;
-//    private Genre genre;
 
     private final Set<Integer> likes = new HashSet<>();
     private Set<Genre> genres = new HashSet<>();
-
-//    public void setGenres(Set<Genre> gens) {
-//        genres.addAll(gens);
-//    }
 
     public void addLike(int id) {
         likes.add(id);

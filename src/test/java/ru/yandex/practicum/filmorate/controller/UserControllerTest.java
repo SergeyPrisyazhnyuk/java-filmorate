@@ -17,11 +17,10 @@ public class UserControllerTest {
     void test_Save() {
         // given
         User user = new User()
-                .setEmail("a@r.ru")
+                 .setEmail("myEmail@yandex.ru")
                 .setName("Sergo")
                 .setLogin("JavaCoder")
                 .setBirthday(LocalDate.parse("1981-06-01"));
-
 
         System.out.println(user.toString());
 

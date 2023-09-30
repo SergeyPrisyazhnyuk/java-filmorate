@@ -19,7 +19,7 @@ public class RatingService {
         return ratingStorage.getAllRatings();
     }
 
-    public Rating getRatingById(Integer id){
+    public Rating getRatingById(Integer id) {
         return ratingStorage.getRatingById(id);
-    };
+    }
 }

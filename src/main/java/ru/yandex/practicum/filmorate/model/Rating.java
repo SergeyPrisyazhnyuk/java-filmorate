@@ -13,6 +13,6 @@ public class Rating {
     private Integer id;
 
     @NotNull
-    private String ratingName;
+    private String name;
 
 }

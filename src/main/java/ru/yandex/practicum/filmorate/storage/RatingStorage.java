@@ -11,6 +11,5 @@ public interface RatingStorage {
 
     Rating getRatingById(Integer id);
 
-    void addRatingToFilm(Film film);
 
 }

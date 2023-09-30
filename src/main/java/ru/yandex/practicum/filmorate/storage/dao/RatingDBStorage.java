@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.exception.EntityNotFoundException;
+import ru.yandex.practicum.filmorate.exception.NotFoundException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.Rating;
 import ru.yandex.practicum.filmorate.storage.RatingStorage;
@@ -34,13 +35,8 @@ public class RatingDBStorage implements RatingStorage {
         try {
             return jdbcTemplate.queryForObject(sql, this::mapRowToRating, id);
         } catch (RuntimeException e) {
-            throw new EntityNotFoundException("Рейтинг с id = " + id + " не найден в справочнике рейтингов");
+            throw new NotFoundException("Рейтинг с id = " + id + " не найден в справочнике рейтингов");
         }
-    }
-
-    @Override
-    public void addRatingToFilm(Film film) {
-
     }
 
     @Override
@@ -53,7 +49,7 @@ public class RatingDBStorage implements RatingStorage {
             Rating rating = Rating
                     .builder()
                     .id(ratingRows.getInt("RATING_ID"))
-                    .ratingName(ratingRows.getString("RATING_NAME"))
+                    .name(ratingRows.getString("RATING_NAME"))
                     .build();
             ratings.add(rating);
         }
@@ -66,7 +62,7 @@ public class RatingDBStorage implements RatingStorage {
         return Rating
                 .builder()
                 .id(rs.getInt("RATING_ID"))
-                .ratingName(rs.getString("RATING_NAME"))
+                .name(rs.getString("RATING_NAME"))
                 .build();
 
     }

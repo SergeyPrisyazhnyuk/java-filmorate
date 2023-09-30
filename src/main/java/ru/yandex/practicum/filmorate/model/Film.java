@@ -10,16 +10,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import ru.yandex.practicum.filmorate.validate.MinimumDate;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
-@ToString
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 public class Film {
 
@@ -39,25 +36,14 @@ public class Film {
     private Long duration;
 
     private Rating mpa;
+//    private Genre genre;
 
     private final Set<Integer> likes = new HashSet<>();
-    private List<Genre> genreList = new ArrayList<>();
+    private Set<Genre> genres = new HashSet<>();
 
-/*
-    public Film(String name, String description, LocalDate releaseDate, Long duration, Rating rating) {
-        this.name = name;
-        this.description = description;
-        this.releaseDate = releaseDate;
-        this.duration = duration;
-        this.rating = rating;
-    }
-
-    public Film(String name, String description, LocalDate releaseDate, Long duration) {
-        this.name = name;
-        this.description = description;
-        this.releaseDate = releaseDate;
-        this.duration = duration;
-    }*/
+//    public void setGenres(Set<Genre> gens) {
+//        genres.addAll(gens);
+//    }
 
     public void addLike(int id) {
         likes.add(id);

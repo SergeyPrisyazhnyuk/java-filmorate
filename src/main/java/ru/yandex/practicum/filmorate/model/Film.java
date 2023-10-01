@@ -3,8 +3,8 @@ package ru.yandex.practicum.filmorate.model;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import lombok.Data;
-import lombok.ToString;
+
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 import ru.yandex.practicum.filmorate.validate.MinimumDate;
@@ -14,7 +14,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 public class Film {
 
@@ -33,7 +35,10 @@ public class Film {
     @Min(value = 0, message = "Продолжительность фильма должна быть положительной!")
     private Long duration;
 
+    private Rating mpa;
+
     private final Set<Integer> likes = new HashSet<>();
+    private Set<Genre> genres = new HashSet<>();
 
     public void addLike(int id) {
         likes.add(id);

@@ -70,28 +70,28 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     @Override
-    public void putLike(int fId, int uId) {
-        if (userStorage.get(uId) != null) {
-            if (films.get(fId) != null) {
-                films.get(fId).addLike(uId);
+    public void putLike(int filmId, int userId) {
+        if (userStorage.get(userId) != null) {
+            if (films.get(filmId) != null) {
+                films.get(filmId).addLike(userId);
             } else {
-                throw new FilmNotFoundException("Не найден фильм с id: " + fId);
+                throw new FilmNotFoundException("Не найден фильм с id: " + filmId);
             }
         } else {
-            throw new UserNotFoundException("Не найден пользователь с id: " + uId);
+            throw new UserNotFoundException("Не найден пользователь с id: " + userId);
         }
     }
 
     @Override
-    public void deleteLike(int fId, int uId) {
-        if (userStorage.get(uId) != null) {
-            if (films.get(fId) != null) {
-                films.get(fId).deleteLike(uId);
+    public void deleteLike(int filmId, int userId) {
+        if (userStorage.get(userId) != null) {
+            if (films.get(filmId) != null) {
+                films.get(filmId).deleteLike(userId);
             } else {
-                throw new FilmNotFoundException("Не найден фильм с id: " + fId);
+                throw new FilmNotFoundException("Не найден фильм с id: " + filmId);
             }
         } else {
-            throw new UserNotFoundException("Не найден пользователь с id: " + uId);
+            throw new UserNotFoundException("Не найден пользователь с id: " + userId);
         }
     }
 

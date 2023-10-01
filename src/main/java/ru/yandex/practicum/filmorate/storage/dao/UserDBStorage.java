@@ -137,17 +137,17 @@ public class UserDBStorage implements UserStorage {
     @Override
     public List<User> getFriends(int id) {
 
-        String sql = "SELECT * FROM USERS WHERE USER_ID IN (SELECT FRIEND_ID FROM FRIENDS WHERE USER_ID = ?)";
+        String sql = "SELECT u.* FROM USERS u JOIN FRIENDS f ON u.USER_ID = f.FRIEND_ID WHERE f.USER_ID = ?";
         return new ArrayList<>(jdbcTemplate.query(sql, this::mapRowToUser, id));
     }
 
     @Override
     public List<User> getCommonFriends(int id, int otherId) {
 
-        String sql = "SELECT * FROM USERS WHERE USER_ID IN (" +
-                "SELECT FRIEND_ID FROM FRIENDS WHERE USER_ID = ? )" +
-                "AND USER_ID IN (" +
-                "SELECT FRIEND_ID FROM FRIENDS WHERE USER_ID = ? )";
+        String sql = "SELECT u.* FROM USERS u \n" +
+                "\t\tJOIN FRIENDS f ON u.USER_ID = f.FRIEND_ID\n" +
+                "\t\tJOIN FRIENDS f2 ON u.USER_ID = f2.FRIEND_ID \n" +
+                "\t\t\tWHERE f.USER_ID = ? AND f2.USER_ID = ?";
 
         return new ArrayList<>(jdbcTemplate.query(sql, this::mapRowToUser, id, otherId));
     }

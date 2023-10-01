@@ -1,5 +1,6 @@
 package ru.yandex.practicum.filmorate.storage.dao;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -24,19 +25,13 @@ import java.util.List;
 @Slf4j
 @Component
 @Primary
+@RequiredArgsConstructor
 public class FilmDBStorage implements FilmStorage {
 
     int id = 1;
     private final JdbcTemplate jdbcTemplate;
 
     private final GenreStorage genreStorage;
-
-    @Autowired
-    public FilmDBStorage(JdbcTemplate jdbcTemplate, FilmGenreStorage filmGenreStorage, GenreStorage genreStorage) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.genreStorage = genreStorage;
-    }
-
 
     public Integer setIdReturn() {
         return id++;
@@ -54,7 +49,7 @@ public class FilmDBStorage implements FilmStorage {
         jdbcTemplate.update(sql, film.getName(), film.getDescription(), film.getReleaseDate(), film.getDuration(), ratingId);
         log.info("Добавлен фильм с Id: " + film.getId() + " и названием: " + film.getName());
 
-        if (film.getGenres().size() != 0/*film.getGenres() != null && !film.getGenres().isEmpty()*/) {
+        if (film.getGenres().size() != 0) {
             String sqlUpdate = "INSERT INTO FILMS_GENRES (FILM_ID, GENRE_ID) VALUES (?,?)";
             for (Genre genre : film.getGenres()) {
                 jdbcTemplate.update(sqlUpdate, film.getId(), genre.getId());
@@ -69,11 +64,7 @@ public class FilmDBStorage implements FilmStorage {
     @Override
     public Film update(Film film) {
 
-        try {
-            get(film.getId());
-        } catch (EmptyResultDataAccessException e) {
-            throw new NotFoundException("Не был найден фильм с Id = " + film.getId());
-        }
+        get(film.getId());
 
         Integer ratingId = film.getMpa().getId();
 

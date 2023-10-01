@@ -31,7 +31,7 @@ public class GenreDBStorage implements GenreStorage {
         List<Genre> genres = new ArrayList<>();
         SqlRowSet genreRows = jdbcTemplate.queryForRowSet("SELECT GENRE_ID , GENRE_NAME FROM GENRES");
 
-        while ((genreRows.next())) {
+        while (genreRows.next()) {
             Genre genre = Genre
                     .builder()
                     .id(genreRows.getInt("GENRE_ID"))
